@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        alert("Two players needed")
+    </script>
+<style>
+ *{
+    margin: 0px;
+ }
+ .main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    height: 90vh;
+ }
+ #d11{
+    height: 260px;
+    width: fit-content;
+ }
+    .div{
+        width: 70px;
+        height: 60px;
+        font-size: 30px;
+        border: 5px solid black;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        animation-duration: 2s;
+    }
+    @keyframes anime {
+        from{background-color: red;}
+        to{background-color: white;}        
+    }
+    #d1{
+        display: inline-block;
+        border-left: none;
+        border-top: none;
+    }
+    #d2{
+        display: inline-block;
+        border-top: none;
+    }
+    #d3{
+        display: inline-block;
+        border-right: none;
+        border-top: none;
+    }
+    #d4{
+        display: inline-block;
+        border-left: none;
+    }
+    #d5{
+        display: inline-block;
+    }
+    #d6{
+        display: inline-block;
+        border-right: none;
+    }
+    #d7{
+        display: inline-block;
+        border-left: none;
+        border-bottom: none;
+    }
+    #d8{
+        display: inline-block;
+        border-bottom: none;
+    }
+    #d9{
+        display: inline-block;
+        border-right: none;
+        border-bottom: none;
+    }
+    #d12{
+        font-size: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+    .cov{
+    display: none;
+    width: 98vw;
+    height: 97vh;
+    position: fixed;
+    z-index: 3;
+    background-color: transparent;
+    }
+</style>
+</head>
+<body>
+    <div class="cov" id="cov"> </div> 
+    <div class="main">
+    <div id="d11">
+    <div id="d1" class="div" onclick="func('d1')">_</div>
+    <div id="d2" class="div"onclick="func('d2')">_</div>
+    <div id="d3"  class="div"onclick="func('d3')">_</div>
+    <br>
+    <div id="d4" class="div" onclick="func('d4')">_</div>
+    <div id="d5" class="div"onclick="func('d5')">_</div>
+    <div id="d6" class="div"onclick="func('d6')">_</div>
+    <br>
+    <div id="d7" class="div"onclick="func('d7')">_</div>
+    <div id="d8" class="div"onclick="func('d8')">_</div>
+    <div id="d9" class="div"onclick="func('d9')">_</div>
+    </div>
+<br>
+<div id="d12">  </div></div>
+    <script>
+        var s1="X",s2="O",se;
+        se=Math.floor(Math.random()*2)
+        var i=0;
+        var mems=[]
+        mems[i]=0;
+        console.log(se)
+        function geta(g){
+            get(g).style.animationName="anime"
+        }
+        function rand(){
+            if(se==0){
+                return s1;
+            }
+            else{
+                return s2;
+            }   
+        }
+        function get(e){
+           return document.getElementById(e);
+        }
+        function select(){
+            i=i+1;
+            if(mems[i-1]==0){
+                mems[i]=rand();
+                return rand()
+        }
+            else if(mems[i-1]=="X"){
+                mems[i]="O"
+                return "O"
+            }
+            else {
+                mems[i]="X"
+                return "X"
+            }
+        }
+        var d12=get("d12");
+        d12.innerText=`Let '${rand()}' will start first`;
+        console.log(rand())
+
+        function func(id){
+            if(geti(id)!=='_'){
+            }
+            else{
+            console.log(id)
+            console.log(get(id))
+            var gd=get(id)
+          gd.innerText=` ${select()}`
+          prove(id)
+            }
+        }
+        function geti(t){
+            return document.getElementById(t).innerText;
+        }
+        function delay(){
+            window.location.reload()
+        }
+        function cov(){
+            document.getElementById("cov").style.display="flex"
+        }
+       function prove(p){
+      if(p=="d1"){//t
+       if(get("d1").innerText==get("d2").innerText&&get("d1").innerText==get("d3").innerText){
+            geta("d1");
+            geta("d2")
+            geta("d3")
+            alert(geti("d1")+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+         console.log("hey") //t1
+        }
+       else if(geti("d1")==geti("d4")&&geti("d1")==geti("d7")){
+            geta("d1")
+           geta("d4")
+           geta("d7")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+           console.log("hey hey")//t2
+          
+            }
+       else if(geti("d1")==geti("d5")&&geti("d1")==geti("d9")){
+            geta("d1")
+            geta("d5")
+            geta("d9")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+        console.log("hey hey hey")//t3
+        }
+        else{
+            tie()
+        }              
+        console.log(p)
+      }
+      if(p=="d2"){//p
+        if(get("d1").innerText==get("d2").innerText&&get("d1").innerText==get("d3").innerText){
+            geta("d1");
+            geta("d2")
+            geta("d3")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+         console.log("hey")//p1
+        }
+      else if(geti("d2")==geti("d5")&&geti("d2")==geti("d8")){
+            geta("d5");
+            geta("d2")
+            geta("d8")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+          console.log("hey " +"hi")//p2
+         }
+         else{
+            tie()
+        }   
+        console.log(p)
+      }
+      if(p=="d3"){//u
+        if(get("d1").innerText==get("d2").innerText&&get("d1").innerText==get("d3").innerText){
+            geta("d1");
+            geta("d2")
+            geta("d3")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+         console.log("hey")//u1 
+        }
+       else if(geti("d3")==geti("d6")&&geti("d3")==geti("d9")){
+            geta("d9");
+            geta("d6")
+            geta("d3")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+          console.log("hey "+"hi2")//u2
+        }
+       else if(geti("d3")==geti("d5")&&geti("d3")==geti("d7")){
+            geta("d7");
+            geta("d5")
+            geta("d3")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+        console.log("hey" +"hi3")//u3
+        }
+        else{
+            tie()
+        }   
+        console.log(p)
+      }
+      if(p=="d4"){//y
+        if(geti("d1")==geti("d4")&&geti("d1")==geti("d7")){
+            geta("d1");
+            geta("d4")
+            geta("d7")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+           console.log("hey hey")//y1
+            }
+       else if(geti("d4")==geti("d5")&&geti("d4")==geti("d6")){
+            geta("d4");
+            geta("d5")
+            geta("d6")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+           console.log("hey+2")//y2
+        }    
+        else{
+            tie()
+        }   
+        console.log(p)
+      }
+      if(p=="d5"){//q
+        if(geti("d4")==geti("d5")&&geti("d4")==geti("d6")){
+            geta("d4");
+            geta("d5")
+            geta("d6")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+           console.log("hey+2")//q1
+        }
+     else if(geti("d2")==geti("d5")&&geti("d2")==geti("d8")){
+            geta("d5");
+            geta("d2")
+            geta("d8")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+            
+          console.log("hey " +"hi")//q2
+         }
+       else  if(geti("d1")==geti("d5")&&geti("d1")==geti("d9")){
+            geta("d1");
+            geta("d5")
+            geta("d9")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+        console.log("hey hey hey")//q3
+        } 
+       else if(geti("d3")==geti("d5")&&geti("d3")==geti("d7")){
+            geta("d3");
+            geta("d5")
+            geta("d7")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+        console.log("hey" +"hi3")//q4
+        }
+        else{
+            tie()
+        }   
+        console.log(p)
+      }
+      if(p=="d6"){//w
+      if(geti("d3")==geti("d6")&&geti("d3")==geti("d9")){
+            geta("d6");
+            geta("d3")
+            geta("d9")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+          console.log("hey "+"hi2")//w1
+        }
+       else if(geti("d4")==geti("d5")&&geti("d4")==geti("d6")){
+            geta("d4");
+            geta("d5")
+            geta("d6")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+           
+            console.log("hey+2")//w2
+        }
+        else{
+            tie()
+        }   
+        console.log(p)
+      }
+      if(p=="d7"){//s
+        if(geti("d1")==geti("d4")&&geti("d1")==geti("d7")){
+            geta("d4");
+            geta("d1")
+            geta("d7")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+           console.log("hey hey")//s1
+            }
+           else if(geti("d3")==geti("d5")&&geti("d3")==geti("d7")){
+                geta("d3");
+                geta("d5")
+                geta("d7")
+                alert(geti(p)+" is the winner")
+           cov()
+                setTimeout(delay,3000)
+        console.log("hey" +"hi3")//s2
+        }
+       else if(geti("d7")==geti("d8")&&geti("d7")==geti("d9")){
+            geta("d7");
+            geta("d8")
+            geta("d9")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+        console.log("hey" +"hi3")//s3
+        } 
+        else{
+            tie()
+        }      
+        console.log(p)
+      }
+      if(p=="d8"){//a
+        if(geti("d7")==geti("d8")&&geti("d7")==geti("d9")){
+            geta("d7");
+            geta("d8")
+            geta("d9")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+        console.log("hey" +"hi3")//a1
+        }
+       else if(geti("d2")==geti("d5")&&geti("d2")==geti("d8")){
+            geta("d2");
+            geta("d5")
+            geta("d8")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+          console.log("hey " +"hi")//a2
+        }
+        else{
+            tie()
+        }   
+        console.log(p)
+      }
+      if(p=="d9"){//c
+        if(geti("d7")==geti("d8")&&geti("d7")==geti("d9")){
+            geta("d7");
+            geta("d8")
+            geta("d9")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+        console.log("hey" +"hi3")//c1
+        }
+      else if(geti("d3")==geti("d6")&&geti("d3")==geti("d9")){
+            geta("d6");
+            geta("d3")
+            geta("d9")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+          console.log("hey "+"hi2")//c2
+        }
+       else if(geti("d1")==geti("d5")&&geti("d1")==geti("d9")){
+            geta("d5");
+            geta("d1")
+            geta("d9")
+            alert(geti(p)+" is the winner")
+           cov()
+            setTimeout(delay,3000)
+        console.log("hey hey hey")//c3
+        }
+        else{
+            tie()
+        }   
+        console.log(p)
+      }
+       }
+function tie(){
+    if(geti("d1")!=='_'&&geti("d2")!=='_'&&geti("d3")!=='_'&&geti("d4")!=='_'&&geti("d5")!=='_'&&geti("d6")!=='_'&&geti("d7")!=='_'&&geti("d8")!=='_'&&geti("d9")!=='_'){
+        alert("Tie");
+       cov()
+        setTimeout(delay,3000)
+    }
+    else{
+        console.log("not tie")
+    }
+}
+    </script>
+</body>
+</html>
